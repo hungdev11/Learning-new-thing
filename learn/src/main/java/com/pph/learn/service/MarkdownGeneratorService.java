@@ -1,7 +1,8 @@
 package com.pph.learn.service;
 
-import com.pph.learn.api.GenerateRequest;
 import org.springframework.stereotype.Service;
+
+import com.pph.learn.api.GenerateRequest;
 
 @Service
 public class MarkdownGeneratorService {
