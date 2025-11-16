@@ -15,6 +15,8 @@ export default function App(){
   const [llmProvider, setLlmProvider] = useState(null)
   const [error, setError] = useState(null)
 
+  const backendUrl = 'https://learning-new-thing.onrender.com';
+
   useEffect(() => {
     const savedKey = localStorage.getItem('gemini_api_key')
     if (savedKey) {
@@ -31,7 +33,7 @@ export default function App(){
   async function handleGenerate(){
     setLoading(true)
     setError(null)
-    const res = await fetch('/api/generate', {
+    const res = await fetch(`${backendUrl}/api/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ apiKey, topic, language, level })
@@ -57,7 +59,9 @@ export default function App(){
   }
 
   async function handleExport(type){
-    const endpoint = type === 'pdf' ? '/api/export/pdf' : '/api/export/docx'
+    const endpoint = type === 'docx' ? `${backendUrl}/api/export/docx` : ''
+    if (!endpoint) return;
+
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
