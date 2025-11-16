@@ -5,12 +5,4 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/Learning-new-thing/',
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://learning-new-thing.onrender.com',
-        changeOrigin: true,
-      },
-    },
-  },
 })
